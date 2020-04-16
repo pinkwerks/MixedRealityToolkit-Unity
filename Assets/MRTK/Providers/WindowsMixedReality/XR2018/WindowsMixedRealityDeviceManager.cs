@@ -443,15 +443,19 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Input
 #if (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
             if (mixedRealityGazeProviderHeadOverride != null && mixedRealityGazeProviderHeadOverride.UseHeadGazeOverride)
             {
-                SpatialPointerPose pointerPose = SpatialPointerPose.TryGetAtTimestamp(WindowsMixedRealityUtilities.SpatialCoordinateSystem, PerceptionTimestampHelper.FromHistoricalTargetTime(DateTimeOffset.Now));
-                if (pointerPose != null)
-                {
-                    HeadPose head = pointerPose.Head;
-                    if (head != null)
+                var spatialCoordSys = WindowsMixedRealityUtilities.SpatialCoordinateSystem;
+                    if (spatialCoordSys != null)
                     {
-                        mixedRealityGazeProviderHeadOverride.OverrideHeadGaze(head.Position.ToUnityVector3(), head.ForwardDirection.ToUnityVector3());
+                        SpatialPointerPose pointerPose = SpatialPointerPose.TryGetAtTimestamp(spatialCoordSys, PerceptionTimestampHelper.FromHistoricalTargetTime(DateTimeOffset.Now));
+                        if (pointerPose != null)
+                        {
+                            HeadPose head = pointerPose.Head;
+                            if (head != null)
+                            {
+                                mixedRealityGazeProviderHeadOverride.OverrideHeadGaze(head.Position.ToUnityVector3(), head.ForwardDirection.ToUnityVector3());
+                            }
+                        }
                     }
-                }
             }
 #endif // (UNITY_WSA && DOTNETWINRT_PRESENT) || WINDOWS_UWP
 

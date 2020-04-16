@@ -83,8 +83,8 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Experimental.Spatia
             }
         }
 
-    /// <inheritdoc />
-    public override void Enable()
+        /// <inheritdoc />
+        public override void Enable()
         {
             isRemoting = UnityEngine.XR.WSA.HolographicRemoting.ConnectionState == UnityEngine.XR.WSA.HolographicStreamerConnectionState.Connected;
 
@@ -378,7 +378,7 @@ namespace Microsoft.MixedReality.Toolkit.WindowsMixedReality.Experimental.Spatia
                 //if (AutoUpdate || doUpdateOnceOnLoad)
                 if (AutoUpdate)
                 {
-                        observerState = ObserverState.GetScene;
+                    observerState = ObserverState.GetScene;
                     //doUpdateOnceOnLoad = false;
                 }
             };
